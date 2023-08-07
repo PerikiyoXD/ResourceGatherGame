@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cym4vxstuscwv"
+path="res://.godot/imported/BasicTree.obj-44f0867386a7a66379abd2e7e7178025.mesh"
+
+[deps]
+
+files=["res://.godot/imported/BasicTree.obj-44f0867386a7a66379abd2e7e7178025.mesh"]
+
+source_file="res://Assets/Models/World/Resource/Tree/BasicTree.obj"
+dest_files=["res://.godot/imported/BasicTree.obj-44f0867386a7a66379abd2e7e7178025.mesh", "res://.godot/imported/BasicTree.obj-44f0867386a7a66379abd2e7e7178025.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

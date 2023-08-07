@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2xasd18nehkt"]
+
+[ext_resource type="Environment" uid="uid://bnv1jpeuq70e4" path="res://new_environment.tres" id="1_v0mtf"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_vui1l"]
+size = Vector2(64, 64)
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_v0mtf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_vui1l")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.999327, 0.00583161, -0.036214, 0, 0.987281, 0.158984, 0.0366806, -0.158877, 0.986617, 0.589366, 6.13813, 22.7134)
+environment = ExtResource("1_v0mtf")

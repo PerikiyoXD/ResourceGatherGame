@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://w2tu6do2e4ue"]
+
+[ext_resource type="Script" path="res://Scripts/ResourceCounter.cs" id="1_yupyh"]
+[ext_resource type="Texture2D" uid="uid://d4jgutek36h0e" path="res://Assets/Icons/iron_bar.png" id="2_rbsr6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7o1bb"]
+line_spacing = 0.0
+font_size = 14
+
+[node name="ResourceCounter" type="Panel"]
+custom_minimum_size = Vector2(100, 20)
+offset_right = 100.0
+offset_bottom = 20.0
+script = ExtResource("1_yupyh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_rbsr6")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "999999999"
+label_settings = SubResource("LabelSettings_7o1bb")
+horizontal_alignment = 1
+vertical_alignment = 1

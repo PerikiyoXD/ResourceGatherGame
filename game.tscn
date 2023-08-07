@@ -1,0 +1,72 @@
+[gd_scene load_steps=16 format=3 uid="uid://dy5osp5xsi3hg"]
+
+[ext_resource type="Script" path="res://Scripts/Game.cs" id="1_qsca0"]
+[ext_resource type="PackedScene" uid="uid://bssc71j624cra" path="res://Components/UI/resource_ui.tscn" id="2_eh5n2"]
+[ext_resource type="Script" path="res://Scripts/Audio/Music/MusicJukebox.cs" id="4_wti2r"]
+[ext_resource type="AudioStream" uid="uid://bt8ddl7jg1cfw" path="res://Assets/Music/Ambiental/ambient-classical-guitar-144998.mp3" id="5_woby7"]
+[ext_resource type="AudioStream" uid="uid://cyt6bf4epwro8" path="res://Assets/Music/Ambiental/colors-157220.mp3" id="6_g5rqo"]
+[ext_resource type="AudioStream" uid="uid://c2in2hfibrcca" path="res://Assets/Music/Ambiental/illusion-feel-ambient-guitar-146100.mp3" id="7_uah0t"]
+[ext_resource type="AudioStream" uid="uid://dwxmp1d4j21tc" path="res://Assets/Music/Ambiental/same-bossa-153213.mp3" id="8_kq48q"]
+[ext_resource type="Script" path="res://Scripts/World/Cell/WorldCellInstance.cs" id="9_40qrc"]
+[ext_resource type="AudioStream" uid="uid://tlpkpkn7sqna" path="res://Assets/Music/Ambiental/the-story-of-elen-147264.mp3" id="9_rrpve"]
+[ext_resource type="Script" path="res://Scripts/World/Generator/WorldGenerator.cs" id="9_w5g4b"]
+[ext_resource type="Script" path="res://Scripts/SceneCamera.cs" id="10_wrelw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gt812"]
+sky_top_color = Color(0, 0.462745, 0.772549, 1)
+sky_horizon_color = Color(0.568627, 0.886275, 0.992157, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.568627, 0.886275, 0.992157, 1)
+ground_curve = 0.00870549
+
+[sub_resource type="Sky" id="Sky_bfgrr"]
+sky_material = SubResource("ProceduralSkyMaterial_gt812")
+
+[sub_resource type="Environment" id="Environment_86tax"]
+background_mode = 2
+sky = SubResource("Sky_bfgrr")
+tonemap_mode = 2
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_afrou"]
+noise_type = 4
+seed = 123434
+offset = Vector3(0, 2.77778e+07, 0)
+domain_warp_enabled = true
+domain_warp_type = 2
+domain_warp_amplitude = 50.0
+domain_warp_frequency = -0.02
+
+[node name="Game" type="Node"]
+script = ExtResource("1_qsca0")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_86tax")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="GUI" parent="." instance=ExtResource("2_eh5n2")]
+
+[node name="Jukebox" type="Node" parent="."]
+script = ExtResource("4_wti2r")
+songs = Array[AudioStream]([ExtResource("5_woby7"), ExtResource("6_g5rqo"), ExtResource("7_uah0t"), ExtResource("8_kq48q"), ExtResource("9_rrpve")])
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Jukebox"]
+volume_db = -10.387
+
+[node name="World" type="Node3D" parent="."]
+script = ExtResource("9_w5g4b")
+seed = 123434
+size = Vector2(33, 33)
+fastNoiseLite = SubResource("FastNoiseLite_afrou")
+
+[node name="Node3D" type="Node3D" parent="World"]
+script = ExtResource("9_40qrc")
+
+[node name="CameraController" type="Node3D" parent="."]
+script = ExtResource("10_wrelw")
+
+[node name="Camera3D" type="Camera3D" parent="CameraController"]
+transform = Transform3D(1, -1.64301e-07, 5.98007e-08, 0, 0.34202, 0.939693, -1.74846e-07, -0.939693, 0.34202, 0, 0, 0)
+projection = 1
